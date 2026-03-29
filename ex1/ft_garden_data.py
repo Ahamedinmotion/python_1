@@ -7,6 +7,9 @@ class Plant:
     def __str__(self):
         return f"{self.name}: {self.height}cm, {self.age} days old"
 
+    def show(self):
+        return str(self)
+
 
 def main():
     print("=== Garden Plant Registry ===")

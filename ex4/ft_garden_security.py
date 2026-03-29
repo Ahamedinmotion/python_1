@@ -1,27 +1,34 @@
-class SecurePlant:
+class Plant:
     def __init__(self, name, height, age):
         self.name = name
-        self._height = 0
+        self._height = 0.0
         self._age = 0
 
-        self.set_height(height)
-        self.set_age(age)
+        if height < 0:
+            print(f"{self.name}: Error, height can't be negative")
+        else:
+            self._height = float(height)
+
+        if age < 0:
+            print(f"{self.name}: Error, age can't be negative")
+        else:
+            self._age = age
 
     def set_height(self, height):
         if height < 0:
-            print(f"Invalid operation attempted: height {height}cm [REJECTED]")
-            print("Security: Negative height rejected")
-        else:
-            self._height = height
-            print(f"Height updated: {self._height}cm [OK]")
+            print(f"{self.name}: Error, height can't be negative")
+            print("Height update rejected")
+            return
+        self._height = float(height)
+        print(f"Height updated: {height}cm")
 
     def set_age(self, age):
         if age < 0:
-            print(f"Invalid operation attempted: age {age} days [REJECTED]")
-            print("Security: Negative age rejected")
-        else:
-            self._age = age
-            print(f"Age updated: {self._age} days [OK]")
+            print(f"{self.name}: Error, age can't be negative")
+            print("Age update rejected")
+            return
+        self._age = age
+        print(f"Age updated: {age} days")
 
     def get_height(self):
         return self._height
@@ -30,17 +37,22 @@ class SecurePlant:
         return self._age
 
     def __str__(self):
-        return f"{self.name} ({self._height}cm, {self._age} days)"
+        return f"{self.name}: {self._height:.1f}cm, {self._age} days old"
 
 
 def main():
     print("=== Garden Security System ===")
-    plant = SecurePlant("Rose", 25, 30)
-    print(f"Plant created: {plant.name}")
+
+    plant = Plant("Rose", 15, 10)
+    print(f"Plant created: {plant}")
+
     plant.set_height(25)
     plant.set_age(30)
+
     plant.set_height(-5)
-    print(f"Current plant: {plant}")
+    plant.set_age(-2)
+
+    print(f"Current state: {plant}")
 
 
 if __name__ == "__main__":

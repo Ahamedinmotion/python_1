@@ -1,22 +1,25 @@
 class Plant:
     def __init__(self, name, height, age):
         self.name = name
-        self.height = height
+        self.height = float(height)
         self.age = age
 
     def __str__(self):
-        return f"{self.name} ({self.height}cm, {self.age} days)"
+        return f"{self.name}: {self.height:.1f}cm, {self.age} days old"
+
+    def show(self):
+        return (str(self))
 
 
 def main():
-    print("=== Garden Plant Registry ===")
+    print("=== Plant Factory Output ===")
 
     plants = [
         Plant("Rose", 25, 30),
+        Plant("Oak", 200, 365),
+        Plant("Cactus", 5, 90),
         Plant("Sunflower", 80, 45),
-        Plant("Cactus", 15, 120),
-        Plant("Lily", 20, 30),
-        Plant("Tulips", 300, 250)
+        Plant("Fern", 15, 120),
     ]
 
     for plant in plants:
